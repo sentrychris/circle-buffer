@@ -1,4 +1,4 @@
-import { CircularBuffer } from '../src/CircularBuffer';
+import { CircularBuffer } from './CircularBuffer';
 
 describe('buffer', () => {
   let buffer: CircularBuffer;
