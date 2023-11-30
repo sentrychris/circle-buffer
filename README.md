@@ -1,6 +1,6 @@
 # Circle Buffer
 
-A simple circular array buffer for efficient management of circular buffers in JavaScript/TypeScript.
+A simple circular array buffer for efficient management of string data in JavaScript/TypeScript.
 
 ## Installation
 
@@ -69,6 +69,35 @@ console.log(buffer.get()); // Output: ''
 - `rewind(): void`
 
   Moves the buffer backward by one position, removing the last value. If the buffer becomes empty, an empty string is added at the beginning.
+
+## Use Cases
+
+Suitable for various use cases involving the management of circular buffers that exclusively store strings or characters. Some potential use cases include:
+
+1. **Input History in a Console or Terminal:**
+   - Maintain a history of user inputs with a fixed size.
+
+2. **Text Animation:**
+   - Create scrolling text displays or text-based animations.
+
+3. **Textual Undo/Redo Functionality:**
+   - Implement undo and redo functionality for changes made to a string.
+
+4. **Rotating Text Displays:**
+   - Display a rotating set of messages or information.
+
+5. **Logging Recent Events:**
+   - Log recent events in a string format within a fixed-size buffer.
+
+6. **String History in Interactive Applications:**
+   - Manage a history of user inputs or actions involving strings.
+
+7. **String-based Sliding Windows:**
+   - Process a stream of string data and keep track of recent strings.
+
+8. **Fixed-Size String Buffer in Resource-Constrained Environments:**
+   - Manage string data efficiently in resource-constrained environments.
+
 
 ## License
 
