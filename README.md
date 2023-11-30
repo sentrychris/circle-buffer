@@ -1,6 +1,6 @@
-![CI Tests](https://github.com/sentrychris/circle-buffer/actions/workflows/node.js.yml/badge.svg)
-
 # Circle Buffer
+
+![CI Tests](https://github.com/sentrychris/circle-buffer/actions/workflows/node.js.yml/badge.svg)
 
 A simple circular array buffer for efficient management of string data in JavaScript/TypeScript.
 
