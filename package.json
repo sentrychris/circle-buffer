@@ -1,0 +1,19 @@
+{
+  "name": "circle-buffer",
+  "version": "0.1.1",
+  "author": "Chris Rowles <christopher.rowles@outlook.com>",
+  "license": "MIT",
+  "description": "A simple circular array buffer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sentrychris/circle-buffer.git"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "files": [
+    "dist"
+  ]
+}

@@ -1,0 +1,5 @@
+.idea
+node_modules
+out/
+releases/
+.DS_Store
