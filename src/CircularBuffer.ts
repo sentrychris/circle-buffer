@@ -1,28 +1,57 @@
+/** @public */
 export class CircularBuffer {
-
+  /**
+   * The buffer
+   */
   public buffer: string[];
 
+  /**
+   * The buffer limit
+   */
   private limit: number;
 
-  constructor ({ limit }: { limit: number }) {
+  /**
+   * Create a new circular buffer
+   *
+   * @param limit - the buffer size limit
+   */
+  constructor({ limit }: { limit: number }) {
     this.buffer = new Array(limit).fill('');
     this.limit = limit;
   }
 
-  get () {
+  /**
+   * Get the current state of the buffer
+   */
+  get(): string {
     return this.buffer.join('');
   }
 
-  reset () {
+  /**
+   * Reset the buffer, fill it with empty strings
+   */
+  reset(): void {
     this.buffer = new Array(this.limit).fill('');
   }
 
-  forward (value: string) {
+  /**
+   * Move the buffer forward by one position and add
+   * the provided value at the end of the buffer, if
+   * the buffer is full, the oldest value is removed
+   *
+   * @param value - the value to add to the buffer
+   */
+  forward(value: string): void {
     this.buffer.shift();
     this.buffer.push(value);
   }
 
-  rewind () {
+  /**
+   * Move the buffer backward by one position, removing
+   * the last value, if the buffer becomes empty, an empty
+   * string is added at the beginning
+   */
+  rewind(): void {
     if (this.buffer.length > 0) {
       this.buffer.pop();
 
