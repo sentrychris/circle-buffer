@@ -7,7 +7,7 @@ A simple circular array buffer for efficient management of string data in JavaSc
 ## Installation
 
 ```bash
-npm install circle-buffer
+npm install circle-buffer --save
 ```
 
 ## Usage
