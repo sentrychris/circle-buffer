@@ -54,4 +54,18 @@ describe('buffer', () => {
 
     expect(buffer.get()).toBe('BCD');
   });
+
+  it('should throw an exception when creating a new buffer', () => {
+    expect(() => new CircularBuffer({ limit: -1 })).toThrow(
+      'Limit must be a positive integer.',
+    );
+
+    expect(() => new CircularBuffer({ limit: 0 })).toThrow(
+      'Limit must be a positive integer.',
+    );
+
+    expect(() => new CircularBuffer({ limit: 2.5 })).toThrow(
+      'Limit must be a positive integer.',
+    );
+  });
 });
