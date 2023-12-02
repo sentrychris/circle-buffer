@@ -1,6 +1,6 @@
 {
   "name": "circle-buffer",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "author": "Chris Rowles <christopher.rowles@outlook.com>",
   "license": "MIT",
   "description": "A simple circular array buffer",
