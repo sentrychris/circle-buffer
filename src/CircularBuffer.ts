@@ -3,7 +3,7 @@ export class CircularBuffer {
   /**
    * The buffer
    */
-  public buffer: string[];
+  private buffer: string[];
 
   /**
    * The buffer limit
@@ -14,8 +14,13 @@ export class CircularBuffer {
    * Create a new circular buffer
    *
    * @param limit - the buffer size limit
+   * @throws if the provided limit is not a positive integer
    */
   constructor({ limit }: { limit: number }) {
+    if (!Number.isInteger(limit) || limit <= 0) {
+      throw new Error('Limit must be a positive integer.');
+    }
+
     this.buffer = new Array(limit).fill('');
     this.limit = limit;
   }
