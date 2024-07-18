@@ -66,7 +66,15 @@ describe('buffer', () => {
     expect(buffer.get(2)).toBe('C');
   });
 
-  it('should throw an exception when creating a new buffer', () => {
+  it('should get the buffer at the specified range', () => {
+    buffer.forward('A');
+    buffer.forward('B');
+    buffer.forward('C');
+
+    expect(buffer.range(0, 2)).toBe('AB');
+  });
+
+  it('should throw exception when creating a new buffer', () => {
     expect(() => new CircularBuffer({ limit: -1 })).toThrow(
       'Limit must be a positive integer.',
     );
@@ -77,6 +85,20 @@ describe('buffer', () => {
 
     expect(() => new CircularBuffer({ limit: 2.5 })).toThrow(
       'Limit must be a positive integer.',
+    );
+  });
+
+  it('should throw when attempting to get the buffer at an invalid position', () => {
+    expect(() => {
+      buffer.get(99);
+    }).toThrow('Index must be a non-negative integer within buffer limits.');
+  });
+
+  it('should throw when attempting to get the buffer at an invalid range.', () => {
+    expect(() => {
+      buffer.range(0, 99);
+    }).toThrow(
+      'Start and len must be non-negative integers within buffer limits, and start must be less than len.',
     );
   });
 });

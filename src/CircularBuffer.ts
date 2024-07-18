@@ -13,7 +13,7 @@ export class CircularBuffer {
   /**
    * Create a new circular buffer.
    *
-   * @param limit - The buffer size limit.
+   * @param limit - the buffer size limit.
    * @throws if the provided limit is not a positive integer.
    */
   constructor({ limit }: { limit: number }) {
@@ -49,6 +49,30 @@ export class CircularBuffer {
     }
 
     return this.buffer[index];
+  }
+
+  /**
+   * Get the content within a specific range in the buffer.
+   *
+   * @param start - the starting position of the range.
+   * @param len - the length of the range (exclusive).
+   * @returns the content within the specified range.
+   * @throws if the start or len indices are out of bounds.
+   */
+  range(start: number, len: number): string {
+    if (
+      !Number.isInteger(start) ||
+      !Number.isInteger(len) ||
+      start < 0 ||
+      len > this.limit ||
+      start >= len
+    ) {
+      throw new Error(
+        'Start and len must be non-negative integers within buffer limits, and start must be less than len.',
+      );
+    }
+
+    return this.buffer.slice(start, len).join('').toString();
   }
 
   /**

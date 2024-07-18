@@ -13,7 +13,7 @@ export declare class CircularBuffer {
     /**
      * Create a new circular buffer.
      *
-     * @param limit - The buffer size limit.
+     * @param limit - the buffer size limit.
      * @throws if the provided limit is not a positive integer.
      */
     constructor({ limit }: {
@@ -35,6 +35,16 @@ export declare class CircularBuffer {
      * @throws if the index is out of bounds.
      */
     get(index: number): string;
+
+    /**
+     * Get the content within a specific range in the buffer.
+     *
+     * @param start - the starting position of the range.
+     * @param len - the length of the range (exclusive).
+     * @returns the content within the specified range.
+     * @throws if the start or len indices are out of bounds.
+     */
+    range(start: number, len: number): string;
 
     /**
      * Reset the buffer, fill it with empty strings.
