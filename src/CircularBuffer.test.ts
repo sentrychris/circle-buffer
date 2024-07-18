@@ -9,18 +9,18 @@ describe('buffer', () => {
   });
 
   it('should initialize with an empty buffer', () => {
-    expect(buffer.get()).toBe('');
+    expect(buffer.current()).toBe('');
   });
 
   it('should add values to the buffer using forward()', () => {
     buffer.forward('A');
-    expect(buffer.get()).toBe('A');
+    expect(buffer.current()).toBe('A');
 
     buffer.forward('B');
-    expect(buffer.get()).toBe('AB');
+    expect(buffer.current()).toBe('AB');
 
     buffer.forward('C');
-    expect(buffer.get()).toBe('ABC');
+    expect(buffer.current()).toBe('ABC');
   });
 
   it('should rewind the buffer using rewind()', () => {
@@ -29,13 +29,13 @@ describe('buffer', () => {
     buffer.forward('C');
 
     buffer.rewind();
-    expect(buffer.get()).toBe('AB');
+    expect(buffer.current()).toBe('AB');
 
     buffer.rewind();
-    expect(buffer.get()).toBe('A');
+    expect(buffer.current()).toBe('A');
 
     buffer.rewind();
-    expect(buffer.get()).toBe('');
+    expect(buffer.current()).toBe('');
   });
 
   it('should reset the buffer using reset()', () => {
@@ -43,7 +43,7 @@ describe('buffer', () => {
     buffer.forward('B');
 
     buffer.reset();
-    expect(buffer.get()).toBe('');
+    expect(buffer.current()).toBe('');
   });
 
   it('should handle the buffer limit', () => {
@@ -51,8 +51,19 @@ describe('buffer', () => {
     buffer.forward('B');
     buffer.forward('C');
     buffer.forward('D');
+    buffer.forward('E');
 
-    expect(buffer.get()).toBe('BCD');
+    expect(buffer.current()).toBe('CDE');
+  });
+
+  it('should get the buffer at the specified position', () => {
+    buffer.forward('A');
+    buffer.forward('B');
+    buffer.forward('C');
+
+    expect(buffer.get(0)).toBe('A');
+    expect(buffer.get(1)).toBe('B');
+    expect(buffer.get(2)).toBe('C');
   });
 
   it('should throw an exception when creating a new buffer', () => {

@@ -2,7 +2,12 @@
 
 ![CI Tests](https://github.com/sentrychris/circle-buffer/actions/workflows/tests.yml/badge.svg)
 
-A simple circular array buffer for efficient management of string data in JavaScript/TypeScript.
+A simple circular array buffer (also known as a ring buffer) for efficient management of string data in JavaScript/TypeScript.
+
+This simple module is designed to manage a fixed-size buffer efficiently, with the ability to 
+overwrite old data with new data as it arrives. This is useful in scenarios where memory usage 
+needs to be constant and predictable, such as in real-time data processing, streaming applications, 
+or when handling continuous data streams like logs, sensor data, or network packets.
 
 ## Installation
 
@@ -24,19 +29,19 @@ buffer.forward('B');
 buffer.forward('C');
 
 // Get the current state of the buffer
-console.log(buffer.get()); // Output: 'ABC'
+console.log(buffer.current()); // Output: 'ABC'
 
 // Rewind the buffer
 buffer.rewind();
 
 // Get the updated buffer state
-console.log(buffer.get()); // Output: 'AB'
+console.log(buffer.current()); // Output: 'AB'
 
 // Reset the buffer
 buffer.reset();
 
 // Get the buffer state after reset
-console.log(buffer.get()); // Output: ''
+console.log(buffer.current()); // Output: ''
 ```
 
 ## API
@@ -53,9 +58,9 @@ console.log(buffer.get()); // Output: ''
 
 #### Methods
 
-- `get(): string`
+- `current(): string`
 
-  Returns a string representation of the current state of the circular buffer.
+  Returns the current state of the circular buffer.
 
 - `reset(): void`
 
