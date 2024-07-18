@@ -2,7 +2,12 @@
 
 ![CI Tests](https://github.com/sentrychris/circle-buffer/actions/workflows/tests.yml/badge.svg)
 
-A simple circular array buffer for efficient management of string data in JavaScript/TypeScript.
+A simple circular array buffer (also known as a ring buffer) for efficient management of string data in JavaScript/TypeScript.
+
+This simple module is designed to manage a fixed-size buffer efficiently, with the ability to 
+overwrite old data with new data as it arrives. This is useful in scenarios where memory usage 
+needs to be constant and predictable, such as in real-time data processing, streaming applications, 
+or when handling continuous data streams like logs, sensor data, or network packets.
 
 ## Installation
 
@@ -22,21 +27,29 @@ const buffer = new CircularBuffer({ limit: 5 });
 buffer.forward('A');
 buffer.forward('B');
 buffer.forward('C');
+buffer.forward('D');
+buffer.forward('E');
 
 // Get the current state of the buffer
-console.log(buffer.get()); // Output: 'ABC'
+buffer.current(); // Output: 'ABCDE'
 
 // Rewind the buffer
 buffer.rewind();
 
 // Get the updated buffer state
-console.log(buffer.get()); // Output: 'AB'
+buffer.current(); // Output: 'ABCD'
+
+// Get the buffer value at the specified position using index
+buffer.get(1); // Output: 'B'
+
+// Get the buffer value at the specified range using index and length
+buffer.range(0,2); // Output: 'AB'
 
 // Reset the buffer
 buffer.reset();
 
 // Get the buffer state after reset
-console.log(buffer.get()); // Output: ''
+buffer.current(); // Output: ''
 ```
 
 ## API
@@ -53,13 +66,24 @@ console.log(buffer.get()); // Output: ''
 
 #### Methods
 
-- `get(): string`
+- `current(): string`
 
-  Returns a string representation of the current state of the circular buffer.
+  Returns the current state of the buffer.
+
+- `get(index: number): string`
+
+  Returns the content at the specific position in the buffer.
+  - `index`: The index position in the buffer.
+
+- `range(start: number, length: number): string`
+
+  Returns the content at the specific range in the buffer.
+  - `start`: The starting position in the buffer.
+  - `length`: The length of the range to fetch.
 
 - `reset(): void`
 
-  Resets the circular buffer by filling it with empty strings.
+  Resets the buffer by filling it with empty strings.
 
 - `forward(value: string): void`
 
